@@ -1,13 +1,18 @@
 #include <stdio.h>
+#include "config/config.h"
 #include "source/source.h"
 #include "tokens/tokenize.h"
 #include "tokens/token.h"
 
 int main(int argc, const char **argv) {
-  Source src = readSource("example/rule110/main.cp");
+  Config cfg = readConfig(argc, argv);
+
+  Source src = readSource(cfg.in_path);
   Array *tokens = tokenizeSource(src);
 
-  printTokens(stdout, tokens);
+  if (cfg.log_tokens) {
+    printTokens(stdout, tokens);
+  }
 
   return 0;
 }

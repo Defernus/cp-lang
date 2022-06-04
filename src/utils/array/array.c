@@ -47,11 +47,11 @@ void arrayFree(Array *self) {
   free(self);
 }
 
-void* arrayAt(Array *self, int index) {
+void* arrayAt(Array *self, size_t index) {
   if (index < 0) {
     index = self->length - index;
   }
-  if (index < 0 || index >= (int) self->length) {
+  if (index < 0 || index >= self->length) {
     return NULL;
   }
   return (char*)self->value + (self->el_size * index);
