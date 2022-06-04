@@ -2,8 +2,9 @@
 #define CHOP_TOKEN_WHITE_SPACE_H
 
 #include <stdlib.h>
+#include "tokens/token-handler.h"
 #include "source/source.h"
 
-size_t chopWhiteSpace(Source src, size_t offset);
+TokenHandler newWhiteSpaceTokenHandler();
 
 #endif // CHOP_TOKEN_WHITE_SPACE_H

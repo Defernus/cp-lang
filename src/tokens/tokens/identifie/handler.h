@@ -2,8 +2,9 @@
 #define CHOP_TOKEN_IDENTIFIER_H
 
 #include <stdlib.h>
+#include "tokens/token-handler.h"
 #include "source/source.h"
 
-size_t chopIdentifier(Source src, size_t offset);
+TokenHandler newIdentifierTokenHandler();
 
 #endif // CHOP_TOKEN_IDENTIFIER_H

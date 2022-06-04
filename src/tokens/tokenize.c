@@ -16,44 +16,37 @@
 
 static Array *token_handlers = NULL;
 
-static void registerToken(TokenId id, const char *name, chopToken_t chop) {
-  arraySetElementAt(token_handlers, id, &(TokenHandler){
-    .chop = chop,
-    .id = id,
-    .name = name,
-  });
+static void registerToken( TokenHandler handler) {
+  arraySetElementAt(token_handlers, handler.id, &handler);
 }
 
-Array *getHandlers() {
+Array *getTokenHandlers() {
   if (!token_handlers) {
     token_handlers = createArray(TOKENS_COUNT, sizeof(TokenHandler), NULL);
 
-    registerToken(TOKEN_WHITE_SPACE, "white-space", chopWhiteSpace);
-    registerToken(TOKEN_KEYWORD, "keyword", chopKeyword);
-    registerToken(TOKEN_IDENTIFIER, "identifier", chopIdentifier);
-    registerToken(TOKEN_OPERATOR, "operator", chopOperator);
-    registerToken(TOKEN_FLOAT, "float", chopFloat);
-    registerToken(TOKEN_INT, "int", chopInt);
-    registerToken(TOKEN_EXPRESSION_SEPARATOR, "expression-separator", chopExpressionSeparator);
+    registerToken(newWhiteSpaceTokenHandler());
+    registerToken(newKeywordTokenHandler());
+    registerToken(newIdentifierTokenHandler());
+    registerToken(newOperatorTokenHandler());
+    registerToken(newFloatTokenHandler());
+    registerToken(newIntTokenHandler());
+    registerToken(newExpressionSeparatorTokenHandler());
   }
 
   return token_handlers;
 }
 
 Token chopToken(Source src, size_t offset) {
-  Array *handlers = getHandlers();
+  Array *handlers = getTokenHandlers();
 
   for (size_t id = 0; id != arrayGetLength(handlers); ++id) {
     TokenHandler *handler = (TokenHandler*) arrayAt(handlers, id);
 
-    size_t token_size = handler->chop(src, offset);
-    if (token_size) {
-      Token result = (Token) {
-        .id = id,
-        .size = token_size,
-        .src = src,
-        .start = offset,
-      };
+    Token result;
+    if (handler->chop(handler, &result, src, offset)) {
+      result.id = id;
+      result.src = src;
+      result.start = offset;
       return result;
     }
   }

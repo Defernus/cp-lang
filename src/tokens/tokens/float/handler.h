@@ -2,8 +2,9 @@
 #define CHOP_TOKEN_FLOAT_H
 
 #include <stdlib.h>
+#include "tokens/token-handler.h"
 #include "source/source.h"
 
-size_t chopFloat(Source src, size_t offset);
+TokenHandler newFloatTokenHandler();
 
 #endif // CHOP_TOKEN_FLOAT_H

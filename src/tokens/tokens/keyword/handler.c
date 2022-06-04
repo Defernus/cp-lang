@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "handler.h"
 #include "strings.h"
 
@@ -6,16 +7,38 @@ static const char *KEYWORDS[] = {
   "var",
   "for",
 };
-static const size_t KEYWORDS_COUNT = sizeof(KEYWORDS) / sizeof(char*);
 
-size_t chopKeyword(Source src, size_t offset) {
-  for (const char **keyword = KEYWORDS; keyword != KEYWORDS + KEYWORDS_COUNT; ++keyword) {
-    size_t size = strlen(*keyword);
-    int dif = strncmp(src.content + offset, *keyword, size);
+static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
+  for (size_t i = 0; i != TOKEN_KEYWORDS_COUNT; ++i) {
+    size_t size = strlen(KEYWORDS[i]);
+    int dif = strncmp(src.content + offset, KEYWORDS[i], size);
 
     if (!dif) {
-      return size;
+      TokenKeywordId *value = (TokenKeywordId*) malloc(sizeof(TokenKeywordId));
+      *value = i;
+
+      *out = (Token) {
+        .id = self->id,
+        .size = size,
+        .src = src,
+        .start = offset,
+        .value = value,
+      };
+      return true;
     }
   }
-  return 0;
+  return false;
+}
+
+static void toString(TokenHandler *self, Token token, char *out) {
+  sprintf(out, "%d", *(TokenKeywordId*) token.value);
+}
+
+TokenHandler newKeywordTokenHandler() {
+  return (TokenHandler) {
+    .chop = chop,
+    .id = TOKEN_KEYWORD,
+    .name = "keyword",
+    .toString = toString,
+  };
 }

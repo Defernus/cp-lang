@@ -2,8 +2,17 @@
 #define CHOP_KEYWORD_SPACE_H
 
 #include <stdlib.h>
+#include "tokens/token-handler.h"
 #include "source/source.h"
 
-size_t chopKeyword(Source src, size_t offset);
+typedef enum {
+  TOKEN_KEYWORD_CONST,
+  TOKEN_KEYWORD_VAR,
+  TOKEN_KEYWORD_FOR,
+
+  TOKEN_KEYWORDS_COUNT,
+} TokenKeywordId;
+
+TokenHandler newKeywordTokenHandler();
 
 #endif // CHOP_KEYWORD_SPACE_H

@@ -20,4 +20,6 @@ typedef struct {
   void* value;
 } Token;
 
+void sprintToken(char *out, Token token);
+
 #endif // TOKEN_H
