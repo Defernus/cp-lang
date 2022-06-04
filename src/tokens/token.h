@@ -16,6 +16,8 @@ typedef struct {
   size_t size;
 
   TokenId id;
+
+  void* value;
 } Token;
 
 #endif // TOKEN_H

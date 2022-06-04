@@ -6,13 +6,13 @@
 #include "tokenize.h"
 #include "token-handler.h"
 
-#include "tokens/white-space/chop.h"
-#include "tokens/keyword/chop.h"
-#include "tokens/identifie/chop.h"
-#include "tokens/float/chop.h"
-#include "tokens/int/chop.h"
-#include "tokens/operator/chop.h"
-#include "tokens/expression-separator/chop.h"
+#include "tokens/white-space/handler.h"
+#include "tokens/keyword/handler.h"
+#include "tokens/identifie/handler.h"
+#include "tokens/float/handler.h"
+#include "tokens/int/handler.h"
+#include "tokens/operator/handler.h"
+#include "tokens/expression-separator/handler.h"
 
 static Array *token_handlers = NULL;
 

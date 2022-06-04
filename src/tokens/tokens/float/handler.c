@@ -1,8 +1,8 @@
 #include <stdbool.h>
-#include "chop.h"
+#include "handler.h"
 #include "strings.h"
 
-#include "tokens/tokens/int/chop.h"
+#include "tokens/tokens/int/handler.h"
 
 size_t chopFloat(Source src, size_t offset) {
   size_t result = chopInt(src, offset);

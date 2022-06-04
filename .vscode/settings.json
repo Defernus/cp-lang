@@ -5,7 +5,7 @@
     "tokenize.h": "c",
     "token.h": "c",
     "strings.h": "c",
-    "chop.h": "c",
+    "handler.h": "c",
     "chop-token.h": "c",
     "token-handler.h": "c",
     "__locale": "c",
