@@ -1,7 +1,9 @@
 # Compiler of c+
 
-```
-./run.sh
+## TL;DR run
+```bash
+./build.sh
+./build/out -h
 ```
 
 ## Progress
