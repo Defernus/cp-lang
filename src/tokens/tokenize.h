@@ -5,5 +5,6 @@
 #include "utils/array/array.h"
 
 Array *tokenizeSource(Source);
+Array *getHandlers();
 
 #endif // TOKENIZE_H

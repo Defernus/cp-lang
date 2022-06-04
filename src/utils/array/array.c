@@ -62,7 +62,6 @@ bool arraySetElementAt(Array *self, unsigned index, const void *newValue) {
     return false;
   }
   memcpy((void*)((char*)self->value + index * self->el_size), newValue, self->el_size);
-  printf("!! %p\n", ((void**)self->value + index * self->el_size)[0]);
   return true;
 }
 

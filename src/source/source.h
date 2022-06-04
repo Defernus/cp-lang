@@ -1,6 +1,8 @@
 #ifndef SOURCE_H
 #define SOURCE_H
 
+#include <stdlib.h>
+
 typedef struct {
   size_t size;
   const char *content;

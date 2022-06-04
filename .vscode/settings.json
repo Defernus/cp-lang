@@ -8,6 +8,8 @@
     "chop.h": "c",
     "chop-token.h": "c",
     "token-handler.h": "c",
-    "__locale": "c"
+    "__locale": "c",
+    "compile-error.h": "c",
+    "string.h": "c"
   }
 }

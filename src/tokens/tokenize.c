@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#include "compile-error/compile-error.h"
+
 #include "token.h"
 #include "tokenize.h"
 #include "token-handler.h"
@@ -22,7 +24,7 @@ static void registerToken(TokenId id, const char *name, chopToken_t chop) {
   });
 }
 
-static Array *getHandlers() {
+Array *getHandlers() {
   if (!token_handlers) {
     token_handlers = createArray(TOKENS_COUNT, sizeof(TokenHandler), NULL);
 
@@ -46,7 +48,6 @@ Token chopToken(Source src, size_t offset) {
 
     size_t token_size = handler->chop(src, offset);
     if (token_size) {
-      printf("token chopped at %zu: %s (size: %zu)\n", offset, handler->name, token_size);
       Token result = (Token) {
         .id = id,
         .size = token_size,
@@ -71,16 +72,37 @@ Array *tokenizeSource(Source src) {
   Array *result = createEmptyArray(1, sizeof(Token));
   size_t offset = 0;
 
+  size_t col = 1;
+  size_t row = 1;
+
   while (offset < src.size) {
     Token token = chopToken(src, offset);
+
+    token.col = col;
+    token.row = row;
+
+    for (const char *c = src.content + offset; c != src.content + offset + token.size; ++c) {
+      if (*c == '\n') {
+        ++row;
+        col = 1;
+      } else {
+        ++col;
+      }
+    }
+
     if (token.id >= TOKENS_COUNT) {
-      printf("Failed to tokenize \"%s\", error: %u\n", src.path, token.id - TOKENS_COUNT);
-      exit(-1);
+      char err[1024];
+      sprintf(err, "Failed to tokenize \"%s\"", src.path);
+      throwCompileError((CompileError) {
+        .category_message = err,
+        .message = "Unknown token",
+        .token = &token,
+        .status = -1,
+      });
     }
     offset += token.size;
     arrayPush(result, &token);
   }
-  
   
   return result;
 }
