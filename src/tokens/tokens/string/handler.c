@@ -73,7 +73,15 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset){
           break;
         }
         default: {
-          return false;
+          out->start = (size_t) (c - src.content);
+          out->src = src;
+          out->id = TOKEN_STRING;
+          throwCompileError((CompileError) {
+            .category_message = "Failed to tokenize string literal",
+            .message = "Unknown special character",
+            .status = -1,
+            .token = out,
+          });
         }
       }
       ++c;

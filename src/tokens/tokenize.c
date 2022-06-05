@@ -73,10 +73,8 @@ Array *tokenizeSource(Source src) {
     Token token = chopToken(src, offset);
 
     if (token.id >= TOKENS_COUNT) {
-      char err[1024];
-      sprintf(err, "Failed to tokenize \"%s\"", src.path);
       throwCompileError((CompileError) {
-        .category_message = err,
+        .category_message = "Failed to tokenize",
         .message = "Unknown token",
         .token = &token,
         .status = -1,

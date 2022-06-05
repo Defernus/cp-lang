@@ -36,12 +36,14 @@ static SourcePos getSrcPos(const char *src, size_t offset) {
 }
 
 void throwCompileError(CompileError err) {
+  printf("Failed to compile: \"%s\"\n", err.category_message);
   if (!err.token) {
-    printf("Failed to compile: %s\n", err.category_message);
     exit(err.status);
   }
 
   SourcePos pos = getSrcPos(err.token->src.content, err.token->start);
+
+  printf("At %s:%zu:%zu\n", err.token->src.path, pos.row, pos.col);
 
   Array *lines = stringSplit(err.token->src.content, "\n", true);
   const char* line = *(char**) arrayAt(lines, pos.row);
@@ -51,6 +53,6 @@ void throwCompileError(CompileError err) {
   memset(msg_offset, ' ', offset_size - 1);
   msg_offset[offset_size - 1] = 0;
 
-  printf("%s\n%zu | %s\n%s^ %s\n", err.category_message, pos.row + 1, line, msg_offset, err.message);
+  printf("%zu | %s\n%s^ %s\n", pos.row + 1, line, msg_offset, err.message);
   exit(err.status);
 }
