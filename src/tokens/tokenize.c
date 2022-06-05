@@ -11,8 +11,10 @@
 #include "tokens/identifie/handler.h"
 #include "tokens/float/handler.h"
 #include "tokens/int/handler.h"
+#include "tokens/string/handler.h"
 #include "tokens/operator/handler.h"
 #include "tokens/expression-separator/handler.h"
+#include "tokens/comment/handler.h"
 
 static Array *token_handlers = NULL;
 
@@ -30,7 +32,9 @@ Array *getTokenHandlers() {
     registerToken(newOperatorTokenHandler());
     registerToken(newFloatTokenHandler());
     registerToken(newIntTokenHandler());
+    registerToken(newStringTokenHandler());
     registerToken(newExpressionSeparatorTokenHandler());
+    registerToken(newCommentTokenHandler());
   }
 
   return token_handlers;
@@ -93,6 +97,7 @@ Array *tokenizeSource(Source src) {
         .status = -1,
       });
     }
+
     offset += token.size;
     arrayPush(result, &token);
   }

@@ -75,6 +75,7 @@
     "streambuf": "c",
     "args.h": "c",
     "array.h": "c",
-    "config.h": "c"
+    "config.h": "c",
+    "ctype.h": "c"
   }
 }
