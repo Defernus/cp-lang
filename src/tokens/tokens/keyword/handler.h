@@ -1,9 +1,7 @@
 #ifndef CHOP_KEYWORD_SPACE_H
 #define CHOP_KEYWORD_SPACE_H
 
-#include <stdlib.h>
 #include "tokens/token-handler.h"
-#include "source/source.h"
 
 typedef enum {
   TOKEN_KEYWORD_IMPORT,

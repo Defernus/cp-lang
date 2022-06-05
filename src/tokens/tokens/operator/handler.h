@@ -1,9 +1,7 @@
 #ifndef CHOP_TOKEN_OPERATOR_H
 #define CHOP_TOKEN_OPERATOR_H
 
-#include <stdlib.h>
 #include "tokens/token-handler.h"
-#include "source/source.h"
 
 typedef enum {
   TOKEN_OP_CMP,

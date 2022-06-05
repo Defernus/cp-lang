@@ -1,9 +1,7 @@
 #ifndef CHOP_TOKEN_BRACKET_OPEN_H
 #define CHOP_TOKEN_BRACKET_OPEN_H
 
-#include <stdlib.h>
 #include "tokens/token-handler.h"
-#include "source/source.h"
 
 typedef enum {
   TOKEN_BRACKET_OPEN_ROUND,
