@@ -43,7 +43,7 @@ void throwCompileError(CompileError err) {
 
   SourcePos pos = getSrcPos(err.token->src.content, err.token->start);
 
-  printf("At %s:%zu:%zu\n", err.token->src.path, pos.row, pos.col);
+  printf("At %s:%zu:%zu\n", err.token->src.path, pos.row + 1, pos.col + 1);
 
   Array *lines = stringSplit(err.token->src.content, "\n", true);
   const char* line = *(char**) arrayAt(lines, pos.row);
