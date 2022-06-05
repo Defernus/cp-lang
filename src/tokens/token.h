@@ -3,7 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "utils/array/array.h"
+#include "utils/list/list.h"
 #include "source/source.h"
 
 #include "token-id.h"
@@ -20,6 +20,6 @@ typedef struct {
 } Token;
 
 void sprintToken(char *out, Token token);
-void printTokens(FILE *out, Array *tokens);
+void printTokens(FILE *out, List *first_token);
 
 #endif // TOKEN_H

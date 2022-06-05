@@ -1,13 +1,16 @@
 #include "token.h"
 
-void printTokens(FILE *out, Array *tokens) {
+void printTokens(FILE *out, List *first_token) {
   fprintf(out, "{\"tokens\":[");
-  for (size_t i = 0; i != arrayGetLength(tokens); ++i) {
-    Token token = *(Token*) arrayAt(tokens, i);
+  List *current_token = first_token;
+
+  while (current_token) {
     char token_str[1024];
-    sprintToken(token_str, token);
+    sprintToken(token_str, *(Token*) listGetValue(current_token));
     fprintf(out, "%s", token_str);
-    if (i != arrayGetLength(tokens) - 1) {
+
+    current_token = listNext(current_token);
+    if (current_token) {
       fprintf(out, ",");
     }
   }

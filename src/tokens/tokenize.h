@@ -2,9 +2,10 @@
 #define TOKENIZE_H
 
 #include "source/source.h"
+#include "utils/list/list.h"
 #include "utils/array/array.h"
 
-Array *tokenizeSource(Source);
+List *tokenizeSource(Source);
 Array *getTokenHandlers();
 
 #endif // TOKENIZE_H

@@ -75,8 +75,9 @@ Token chopToken(Source src, size_t offset) {
   return result;
 }
 
-Array *tokenizeSource(Source src) {
-  Array *result = createEmptyArray(1, sizeof(Token));
+List *tokenizeSource(Source src) {
+  List *result = NULL;
+  List *last_token = NULL;
   size_t offset = 0;
 
   while (offset < src.size) {
@@ -92,7 +93,11 @@ Array *tokenizeSource(Source src) {
     }
 
     offset += token.size;
-    arrayPush(result, &token);
+
+    last_token = listPushAfter(last_token, &token, sizeof(Token));
+    if (!result) {
+      result = last_token;
+    }
   }
   
   return result;

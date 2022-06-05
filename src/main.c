@@ -8,7 +8,7 @@ int main(int argc, const char **argv) {
   Config cfg = readConfig(argc, argv);
 
   Source src = readSource(cfg.in_path);
-  Array *tokens = tokenizeSource(src);
+  List *tokens = tokenizeSource(src);
 
   if (cfg.log_tokens) {
     printTokens(stdout, tokens);
