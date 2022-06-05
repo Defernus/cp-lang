@@ -19,7 +19,7 @@ typedef struct {
   void* value;
 } Token;
 
-void sprintToken(char *out, Token token);
+void sprintToken(char *out, List *token);
 void printTokens(FILE *out, List *first_token);
 
 #endif // TOKEN_H

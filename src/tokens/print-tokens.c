@@ -6,7 +6,7 @@ void printTokens(FILE *out, List *first_token) {
 
   while (current_token) {
     char token_str[1024];
-    sprintToken(token_str, *(Token*) listGetValue(current_token));
+    sprintToken(token_str, current_token);
     fprintf(out, "%s", token_str);
 
     current_token = listNext(current_token);

@@ -3,7 +3,8 @@
 #include "tokenize.h"
 #include "token-handler.h"
 
-void sprintToken(char *out, Token token) {
+void sprintToken(char *out, List *token_el) {
+  Token token = *(Token*) listGetValue(token_el);
   TokenHandler *handler = (TokenHandler*) arrayAt(getTokenHandlers(), token.id);
 
   const char* name = handler ? handler->name : "unknown-token";
