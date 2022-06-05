@@ -15,10 +15,11 @@ void sprintToken(char *out, List *token_el) {
 
   sprintf(
     out,
-    "{\"id\":%u,\"name\":\"%s\",\"start\":%zu,\"value\":%s}",
+    "{\"id\":%u,\"name\":\"%s\",\"start\":%zu,\"value\":%s,\"src\":\"%s\"}",
     token.id,
     name,
     token.start,
-    value
+    value,
+    token.src.path
   );
 }
