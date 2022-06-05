@@ -9,6 +9,12 @@
 
 #define HELP_FLAG "-h"
 
+typedef enum {
+  ARG_TYPE_STR,
+  ARG_TYPE_BOOL,
+  ARG_TYPES_COUNT,
+} ArgTypeId;
+
 typedef struct {
   ArgTypeId expected_type;
   const void *value;
@@ -172,3 +178,20 @@ void processFlags(int argc, const char **argv) {
     }
   }
 }
+
+bool registerBoolFlag(int argc, const char **argv, const char *flag, const char *description) {
+  bool default_val = false;
+  bool *result_p = (bool*) registerFlagValue(argc, argv, flag, ARG_TYPE_BOOL,description, &default_val);
+  bool result = *result_p;
+  free(result_p);
+
+  return result;
+}
+const char *registerStrFlag(int argc, const char **argv, const char *flag, const char *description, const char *default_val) {
+  return (const char *) registerFlagValue(argc, argv, flag, ARG_TYPE_STR, description, default_val);
+}
+
+const char *registerOptionalStrFlag(int argc, const char **argv, const char *flag, const char *description) {
+  return (const char *) registerOptionalFlagValue(argc, argv, flag, ARG_TYPE_STR, description);
+}
+

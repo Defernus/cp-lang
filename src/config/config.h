@@ -6,6 +6,7 @@
 typedef struct {
   const char *in_path;
   bool log_tokens;
+  bool log_ast;
 } Config;
 
 Config readConfig(int argc, const char **argv);
