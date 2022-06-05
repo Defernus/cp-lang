@@ -3,6 +3,7 @@
 #include "strings.h"
 
 static const char *KEYWORDS[] = {
+  "import",
   "const",
   "var",
   "for",

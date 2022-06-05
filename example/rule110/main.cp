@@ -1,11 +1,11 @@
 // rule 110 implementation on wip-lang
 // https://en.wikipedia.org/wiki/Rule_110
 
-include "./helpers.wip"
+import "./helpers.wip"
 
 const size = 64;
 
-const str = ":: \"\n :: \" :: aaa";
+const test_str = ":: \"\n :: \" :: aaa";
 
 var arr1: *int = allocate(size * 8);
 var arr2: *int = allocate(size * 8);

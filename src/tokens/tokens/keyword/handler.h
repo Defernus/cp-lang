@@ -6,6 +6,7 @@
 #include "source/source.h"
 
 typedef enum {
+  TOKEN_KEYWORD_IMPORT,
   TOKEN_KEYWORD_CONST,
   TOKEN_KEYWORD_VAR,
   TOKEN_KEYWORD_FOR,
