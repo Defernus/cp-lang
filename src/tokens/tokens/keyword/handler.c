@@ -7,6 +7,7 @@ static const char *KEYWORDS[] = {
   "const",
   "var",
   "for",
+  "if",
 };
 
 static bool chop(Token *out, Source src, size_t offset) {
