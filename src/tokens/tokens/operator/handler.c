@@ -11,8 +11,14 @@ const char *OPERATORS[] = {
   ">",
   "++",
   "--",
+  "+=",
+  "-=",
+  "*=",
+  "/=",
   "+",
   "-",
+  "*",
+  "/",
 };
 
 static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {

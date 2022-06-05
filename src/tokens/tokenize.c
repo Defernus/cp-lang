@@ -15,6 +15,7 @@
 #include "tokens/operator/handler.h"
 #include "tokens/expression-separator/handler.h"
 #include "tokens/comment/handler.h"
+#include "tokens/colon/handler.h"
 
 static Array *token_handlers = NULL;
 
@@ -29,6 +30,7 @@ Array *getTokenHandlers() {
     registerToken(newWhiteSpaceTokenHandler());
     registerToken(newKeywordTokenHandler());
     registerToken(newIdentifierTokenHandler());
+    registerToken(newColonTokenHandler());
     registerToken(newOperatorTokenHandler());
     registerToken(newFloatTokenHandler());
     registerToken(newIntTokenHandler());
