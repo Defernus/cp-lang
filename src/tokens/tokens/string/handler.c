@@ -6,7 +6,7 @@
 #define MAX_STRING_LENGTH 1024
 const char *SPECIAL_CHARACTERS = "ntvbrfa\\?\"0";
 
-static bool chop(TokenHandler *self, Token *out, Source src, size_t offset){
+static bool chop(Token *out, Source src, size_t offset){
   char result[MAX_STRING_LENGTH];
   char *curent = result;
   const char *c = src.content + offset;
@@ -96,7 +96,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset){
   memcpy(value, result, val_size);
 
   *out = (Token) {
-    .id = self->id,
+    .id = TOKEN_STRING,
     .size = c - src.content - offset,
     .src = src,
     .start = offset,
@@ -106,7 +106,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset){
   return true;
 }
 
-static void toString(TokenHandler *self, Token token, char *out) {
+static void toString(Token token, char *out) {
   sprintf(out, "%.*s", (int) token.size, token.src.content + token.start);
 }
 

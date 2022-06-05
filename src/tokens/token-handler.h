@@ -9,8 +9,8 @@
 
 typedef struct TokenHandler TokenHandler;
 
-typedef bool (*chopToken_t)(TokenHandler *self, Token *out, Source src, size_t offset);
-typedef void (*tokenToString_t)(TokenHandler *self, Token, char *out);
+typedef bool (*chopToken_t)(Token *out, Source src, size_t offset);
+typedef void (*tokenToString_t)(Token, char *out);
 
 struct TokenHandler {
   chopToken_t chop;

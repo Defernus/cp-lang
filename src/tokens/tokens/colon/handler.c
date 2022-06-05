@@ -1,12 +1,12 @@
 #include "handler.h"
 
-static bool chop(TokenHandler *self, Token *out, Source src, size_t offset){
+static bool chop(Token *out, Source src, size_t offset){
   if (src.content[offset] != ':') {
     return false;
   }
 
   *out = (Token) {
-    .id = self->id,
+    .id = TOKEN_COLON,
     .size = 1,
     .src = src,
     .start = offset,
@@ -16,7 +16,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset){
   return true;
 }
 
-static void toString(TokenHandler *self, Token token, char *out) {
+static void toString(Token token, char *out) {
   sprintf(out, "null");
 }
 

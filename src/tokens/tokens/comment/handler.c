@@ -2,7 +2,7 @@
 #include "handler.h"
 #include "strings.h"
 
-static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
+static bool chop(Token *out, Source src, size_t offset) {
   size_t size = 2;
   if (src.content[offset] != '/' || src.content[offset + 1] != '/') {
     return false;
@@ -16,7 +16,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
 
 
   *out = (Token) {
-    .id = self->id,
+    .id = TOKEN_COMMENT,
     .size = size,
     .src = src,
     .start = offset,
@@ -25,7 +25,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
   return true;
 }
 
-static void toString(TokenHandler *self, Token token, char *out) {
+static void toString(Token token, char *out) {
   sprintf(out, "null");
 }
 

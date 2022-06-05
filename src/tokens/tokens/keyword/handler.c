@@ -9,7 +9,7 @@ static const char *KEYWORDS[] = {
   "for",
 };
 
-static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
+static bool chop(Token *out, Source src, size_t offset) {
   for (size_t i = 0; i != TOKEN_KEYWORDS_COUNT; ++i) {
     size_t size = strlen(KEYWORDS[i]);
     int dif = strncmp(src.content + offset, KEYWORDS[i], size);
@@ -19,7 +19,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
       *value = i;
 
       *out = (Token) {
-        .id = self->id,
+        .id = TOKEN_KEYWORD,
         .size = size,
         .src = src,
         .start = offset,
@@ -31,7 +31,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
   return false;
 }
 
-static void toString(TokenHandler *self, Token token, char *out) {
+static void toString(Token token, char *out) {
   sprintf(out, "%d", *(TokenKeywordId*) token.value);
 }
 

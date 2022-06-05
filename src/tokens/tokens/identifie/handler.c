@@ -2,7 +2,7 @@
 #include "handler.h"
 #include "strings.h"
 
-static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
+static bool chop(Token *out, Source src, size_t offset) {
   size_t size = 0;
 
   for (const char *c = src.content + offset; *c; ++c, ++size) {
@@ -18,7 +18,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
 
   if (size) {
     *out = (Token) {
-      .id = self->id,
+      .id = TOKEN_IDENTIFIER,
       .size = size,
       .src = src,
       .start = offset,
@@ -31,7 +31,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
   return false;
 }
 
-static void toString(TokenHandler *self, Token token, char *out) {
+static void toString(Token token, char *out) {
   sprintf(out, "\"%.*s\"", (int)token.size, token.src.content + token.start);
 }
 

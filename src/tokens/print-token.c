@@ -10,7 +10,7 @@ void sprintToken(char *out, List *token_el) {
   const char* name = handler ? handler->name : "unknown-token";
   char value[1024] = "null";
   if (handler) {
-    handler->toString(handler, token, value);
+    handler->toString(token, value);
   }
 
   sprintf(

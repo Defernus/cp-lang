@@ -5,14 +5,14 @@
 #include "tokens/tokens/int/handler.h"
 #include "tokens/tokenize.h"
 
-static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
+static bool chop(Token *out, Source src, size_t offset) {
   size_t size = 0;
   int int_val = 0;
   size_t float_digit = 1;
 
   Token int_token;
   TokenHandler* int_handler = (TokenHandler* )arrayAt(getTokenHandlers(), TOKEN_INT);
-  if (int_handler->chop(int_handler, &int_token,  src, offset)) {
+  if (int_handler->chop(&int_token,  src, offset)) {
     size += int_token.size;
     int_val = *(int*)(int_token.value);
     free(int_token.value);
@@ -42,7 +42,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
     *value = result;
 
     *out = (Token) {
-      .id = self->id,
+      .id = TOKEN_FLOAT,
       .size = size,
       .src = src,
       .start = offset,
@@ -55,7 +55,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
   return false;
 }
 
-static void toString(TokenHandler *self, Token token, char *out) {
+static void toString(Token token, char *out) {
   sprintf(out, "%f", *(float*) token.value);
 }
 

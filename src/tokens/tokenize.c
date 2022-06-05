@@ -57,7 +57,7 @@ Token chopToken(Source src, size_t offset) {
     TokenHandler *handler = (TokenHandler*) arrayAt(handlers, id);
 
     Token result;
-    if (handler->chop(handler, &result, src, offset)) {
+    if (handler->chop(&result, src, offset)) {
       result.id = id;
       result.src = src;
       result.start = offset;
