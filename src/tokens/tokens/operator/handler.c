@@ -2,7 +2,7 @@
 #include "handler.h"
 #include "strings.h"
 
-const char *OPERATORS[] = {
+static const char *OPERATORS[] = {
   "==",
   "=",
   "<=",

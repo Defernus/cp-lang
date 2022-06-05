@@ -16,6 +16,8 @@
 #include "tokens/expression-separator/handler.h"
 #include "tokens/comment/handler.h"
 #include "tokens/colon/handler.h"
+#include "tokens/bracket-open/handler.h"
+#include "tokens/bracket-close/handler.h"
 
 static Array *token_handlers = NULL;
 
@@ -30,6 +32,8 @@ Array *getTokenHandlers() {
     registerToken(newWhiteSpaceTokenHandler());
     registerToken(newKeywordTokenHandler());
     registerToken(newIdentifierTokenHandler());
+    registerToken(newBracketOpenTokenHandler());
+    registerToken(newBracketCloseTokenHandler());
     registerToken(newColonTokenHandler());
     registerToken(newOperatorTokenHandler());
     registerToken(newFloatTokenHandler());
