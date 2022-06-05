@@ -8,6 +8,7 @@
 
 #include "tokens/white-space/handler.h"
 #include "tokens/keyword/handler.h"
+#include "tokens/type-name/handler.h"
 #include "tokens/identifie/handler.h"
 #include "tokens/float/handler.h"
 #include "tokens/int/handler.h"
@@ -32,6 +33,7 @@ Array *getTokenHandlers() {
 
     registerToken(newWhiteSpaceTokenHandler());
     registerToken(newKeywordTokenHandler());
+    registerToken(newTypeNameTokenHandler());
     registerToken(newIdentifierTokenHandler());
     registerToken(newBracketOpenTokenHandler());
     registerToken(newBracketCloseTokenHandler());
