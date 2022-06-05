@@ -11,9 +11,6 @@
 typedef struct {
   Source src;
 
-  size_t row;
-  size_t col;
-
   size_t start;
   size_t size;
 

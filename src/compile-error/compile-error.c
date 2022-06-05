@@ -3,6 +3,11 @@
 
 #include "compile-error.h"
 
+typedef struct {
+  size_t row;
+  size_t col;
+} SourcePos;
+
 static size_t getNumberLength (int n) {
   size_t result = 1;
   while (n >= 10) {
@@ -12,20 +17,40 @@ static size_t getNumberLength (int n) {
   return result;
 }
 
+static SourcePos getSrcPos(const char *src, size_t offset) {
+  SourcePos result = (SourcePos){
+    .col = 0,
+    .row = 0,
+  };
+
+  for (const char *c = src; c != src + offset; ++c) {
+    if (*c == '\n') {
+      ++result.row;
+      result.col = 0;
+    } else {
+      ++result.col;
+    }
+  }
+
+  return result;
+}
+
 void throwCompileError(CompileError err) {
   if (!err.token) {
     printf("Failed to compile: %s\n", err.category_message);
     exit(err.status);
   }
 
-  Array *lines = stringSplit(err.token->src.content, "\n", true);
-  const char* line = *(char**) arrayAt(lines, err.token->row - 1);
+  SourcePos pos = getSrcPos(err.token->src.content, err.token->start);
 
-  size_t offset_size = err.token->col + 3 + getNumberLength(err.token->row);
+  Array *lines = stringSplit(err.token->src.content, "\n", true);
+  const char* line = *(char**) arrayAt(lines, pos.row);
+
+  size_t offset_size = pos.col + 4 + getNumberLength(pos.row + 1);
   char *msg_offset = malloc(offset_size);
   memset(msg_offset, ' ', offset_size - 1);
   msg_offset[offset_size - 1] = 0;
 
-  printf("%s\n%zu | %s\n%s^ %s\n", err.category_message, err.token->row, line, msg_offset, err.message);
+  printf("%s\n%zu | %s\n%s^ %s\n", err.category_message, pos.row + 1, line, msg_offset, err.message);
   exit(err.status);
 }

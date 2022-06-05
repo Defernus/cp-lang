@@ -69,23 +69,8 @@ Array *tokenizeSource(Source src) {
   Array *result = createEmptyArray(1, sizeof(Token));
   size_t offset = 0;
 
-  size_t col = 1;
-  size_t row = 1;
-
   while (offset < src.size) {
     Token token = chopToken(src, offset);
-
-    token.col = col;
-    token.row = row;
-
-    for (const char *c = src.content + offset; c != src.content + offset + token.size; ++c) {
-      if (*c == '\n') {
-        ++row;
-        col = 1;
-      } else {
-        ++col;
-      }
-    }
 
     if (token.id >= TOKENS_COUNT) {
       char err[1024];

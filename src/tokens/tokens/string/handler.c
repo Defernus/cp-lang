@@ -89,7 +89,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset){
 
   *out = (Token) {
     .id = self->id,
-    .size = c - src.content - offset ,
+    .size = c - src.content - offset,
     .src = src,
     .start = offset,
     .value = value,
@@ -99,7 +99,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset){
 }
 
 static void toString(TokenHandler *self, Token token, char *out) {
-  sprintf(out, "\"%s\"", (const char*)(token.value));
+  sprintf(out, "%.*s", (int) token.size, token.src.content + token.start);
 }
 
 TokenHandler newStringTokenHandler() {

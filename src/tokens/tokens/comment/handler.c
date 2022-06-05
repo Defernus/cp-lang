@@ -26,7 +26,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset) {
 }
 
 static void toString(TokenHandler *self, Token token, char *out) {
-  sprintf(out, "%.*s", (int) (token.size - 2), token.src.content + token.start + 2);
+  sprintf(out, "null");
 }
 
 TokenHandler newCommentTokenHandler() {
