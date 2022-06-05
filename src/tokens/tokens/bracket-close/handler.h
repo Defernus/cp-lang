@@ -1,6 +1,7 @@
 #ifndef CHOP_TOKEN_BRACKET_CLOSE_H
 #define CHOP_TOKEN_BRACKET_CLOSE_H
 
+#include <stdbool.h>
 #include "tokens/token-handler.h"
 
 typedef enum {
@@ -12,5 +13,6 @@ typedef enum {
 } TokenBracketCloseId;
 
 TokenHandler newBracketCloseTokenHandler();
+bool checkCloseBracketType(List *token, TokenBracketCloseId bracket);
 
 #endif // CHOP_TOKEN_BRACKET_CLOSE_H

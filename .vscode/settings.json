@@ -76,6 +76,11 @@
     "args.h": "c",
     "array.h": "c",
     "config.h": "c",
-    "ctype.h": "c"
+    "ctype.h": "c",
+    "list.h": "c",
+    "syntax-node.h": "c",
+    "syntax-node-handler.h": "c",
+    "synatx-node-id.h": "c",
+    "syntax-tree.h": "c"
   }
 }

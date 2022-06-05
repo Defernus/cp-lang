@@ -21,5 +21,6 @@ typedef struct {
 
 void sprintToken(char *out, List *token);
 void printTokens(FILE *out, List *first_token);
+Token getToken(List *token);
 
 #endif // TOKEN_H

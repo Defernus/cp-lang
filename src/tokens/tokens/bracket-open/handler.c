@@ -39,3 +39,8 @@ TokenHandler newBracketOpenTokenHandler() {
     .toString = toString,
   };
 }
+
+bool checkOpenBracketType(List *token_el, TokenBracketOpenId bracket) {
+  Token token = getToken(token_el);
+  return token.id == TOKEN_BRACKET_OPEN && token.value && (*(TokenBracketOpenId*) token.value) == bracket;
+}

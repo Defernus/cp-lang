@@ -3,6 +3,8 @@
 
 #include "tokens/token.h"
 
+#define ERROR_MSG_SYNTAX "Syntax error"
+
 typedef enum {
   COMPILE_ERROR_TOKENIZE,
   COMPILE_ERROR_AST,

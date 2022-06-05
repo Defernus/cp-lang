@@ -1,0 +1,13 @@
+#ifndef SYNTAX_NODE_ID_H
+#define SYNTAX_NODE_ID_H
+
+typedef enum {
+  SYNTAX_SCOPE,
+
+  SYNTAX_IDS_COUNT,
+
+  SYNTAX_EXAMPLE,
+  SYNTAX_UNKNOW_NODE,
+} SyntaxNodeId;
+
+#endif // SYNTAX_NODE_ID_H
