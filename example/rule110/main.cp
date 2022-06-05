@@ -5,8 +5,6 @@ import "./helpers.wip"
 
 const size = 64;
 
-const test_str = ":: \"\n :: \" :: aaa";
-
 var arr1: *int = allocate(size * 8);
 var arr2: *int = allocate(size * 8);
 
