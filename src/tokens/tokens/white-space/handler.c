@@ -27,7 +27,7 @@ static bool chop(TokenHandler *self, Token *out, Source src, size_t offset){
 }
 
 static void toString(TokenHandler *self, Token token, char *out) {
-  sprintf(out, "\" \"");
+  sprintf(out, "null");
 }
 
 TokenHandler newWhiteSpaceTokenHandler() {
